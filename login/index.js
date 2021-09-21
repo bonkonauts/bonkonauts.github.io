@@ -16,8 +16,6 @@
 		var username = document.querySelector('form.login-form div.form-input-material input#username').value;
 		var password = document.querySelector('form.login-form div.form-input-material input#password').value;
 
-		console.log(username, password)
-
 		let user = await proxyLogin(username, password);
 		if(!user) return;
 
@@ -46,7 +44,6 @@
 			return;
 		}
 
-		console.log(user);
 		window.user = user;
 		sessionStorage.setItem('user', JSON.stringify(user));
 
@@ -64,8 +61,6 @@
 async function proxyLogin(user, pass) {
     let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
     let data = await res.text();
-
-	console.log(data)
 
 	if(data.includes('See /corsdemo for more info')) {
 		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
