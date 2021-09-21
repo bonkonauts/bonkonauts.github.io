@@ -7,7 +7,7 @@
     animation.start();
 
     window.user = getUser();
-    // if(!user || (user && Object.keys(user).length == 0)) {
+    if(!user || (user && Object.keys(user).length == 0)) {
     //     window.location.href = '/login';
     //     return;
     // }
