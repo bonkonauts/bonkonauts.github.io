@@ -27,6 +27,11 @@ class SideNavComponent {
 				<span>Friends</span>
 			</a>
 			<hr/>
+			<a class="${path == "/maps" ? 'selected' : ''}" href="/maps">
+				<i class="icon fas fa-table"></i>
+				<span>Maps</span>
+			</a>
+			<hr/>
 			<!--<a class="${path == "/leaderboard" ? 'selected' : ''}" href="/leaderboard">
 				<i class="icon fas fa-trophy"></i>
 				<span>Leaderboard</span>
@@ -35,11 +40,6 @@ class SideNavComponent {
 			<a class="rotate" onclick="runReload()">
 				<i class="icon fas fa-sync-alt"></i>
 				<span>Reload</span>
-			</a>
-			<hr/>
-			<a class="${path == "/maps" ? 'selected' : ''}" href="/maps">
-				<i class="icon fas fa-table"></i>
-				<span>Maps</span>
 			</a>
 			<hr/>
 			<!--<a class="${path == "/database" ? 'selected' : ''}" href="/database">
