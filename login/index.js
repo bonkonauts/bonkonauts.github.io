@@ -52,9 +52,12 @@
 		sessionStorage.setItem('username', user.username);
 		sessionStorage.setItem('password', password);
 
-		AlertEmitter.emit('success', `Hi, ${user.username}! You will be redirected.`)
+		AlertEmitter.emit('success', `Hi, ${user.username}! You will be redirected.`);
 
-		window.location.href = '/';
+		setTimeout(() => {
+			window.location.href = '/';
+		}, 1500)
+
 
 		// fetch('/api/login', {
 		// 	method: 'POST',
