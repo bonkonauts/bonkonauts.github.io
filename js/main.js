@@ -6,17 +6,13 @@
     var animation = new AnimationComponent();
     animation.start();
 
-    window.user = null;
-    fetch('/api/user').then(res => res.json()).then(user => {
-        window.user = user;
-        var sideNav = new SideNavComponent();
-        sideNav.prependTo(document.querySelector('main'));
+    window.user = getUser();
+    if(!user || (user && Object.keys(user).length == 0)) {
+        window.location.href = '/login';
+        return;
+    }
 
-        var topNav = new TopNavComponent();
-        topNav.prependTo(document.querySelector('header'));
-
-        init();
-    });
+    init();
 })();
 
 function runReload() {
@@ -27,4 +23,9 @@ function runReload() {
 		
         window.location.reload();
 	});
+}
+
+function getUser() {
+    let user = sessionStorage.getItem('user');
+    return JSON.parse(user);
 }
