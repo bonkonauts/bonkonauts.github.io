@@ -1,7 +1,5 @@
 
 async function init() {
-	window.user = {};
-	window.user.token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOjcwMjg4MjMsInVpcCI6IjMuODUuMjYuMjQzIiwidW4iOiJJQW1Ob3RIYWNraW5nIiwiZXYiOnRydWUsImx2IjoyMiwiZXhwIjoxNjMyMzQxODY4LCJnIjoiYiJ9.aaw52_P3Yrb1QPwbINEQTQ3LeOrPyzCv9PNwNNptSRw';
 
 	window.MAPS = [];
 	await proxyMaps();
