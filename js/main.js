@@ -12,6 +12,12 @@
         return;
     }
 
+    var sideNav = new SideNavComponent();
+    sideNav.prependTo(document.querySelector('main'));
+
+    var topNav = new TopNavComponent();
+    topNav.prependTo(document.querySelector('header'));
+
     init();
 })();
 
