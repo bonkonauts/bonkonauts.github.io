@@ -21,14 +21,19 @@
     init();
 })();
 
-function runReload() {
-    fetch('/api/reload', {
-		method: 'GET'
-	}).then(res => res.json()).then((res) => {
-		if(res.error) { AlertEmitter.emit('error', 'Could not reload...'); return; }
-		
-        window.location.reload();
-	});
+async function runReload() {
+    var user = sessionStorage.get('username');
+    var pass = sessionStorage.get('password');
+    let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
+    res = await res.json();
+
+    if(user.r != 'success') {
+        AlertEmitter.emit('error', `Could not reload... '${user.e}'`);
+        return;
+    }
+
+    AlertEmitter.emit('success', 'Reloading...');
+    window.location.reload();
 }
 
 function getUser() {
