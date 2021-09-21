@@ -27,8 +27,8 @@ async function runReload() {
     let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
     res = await res.json();
 
-    if(user.r != 'success') {
-        AlertEmitter.emit('error', `Could not reload... '${user.e}'`);
+    if(res.r != 'success') {
+        AlertEmitter.emit('error', `Could not reload... '${res.e}'`);
         return;
     }
 

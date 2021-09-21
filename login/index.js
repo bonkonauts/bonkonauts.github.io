@@ -49,8 +49,8 @@
 		window.user = user;
 		sessionStorage.setItem('user', JSON.stringify(user));
 
-		sessionStorage.setItem('username', JSON.stringify(user.username));
-		sessionStorage.setItem('password', JSON.stringify(password));
+		sessionStorage.setItem('username', user.username);
+		sessionStorage.setItem('password', password);
 
 		AlertEmitter.emit('success', `Hi, ${user.username}! You will be redirected.`)
 
