@@ -67,6 +67,11 @@ async function proxyLogin(user, pass) {
 		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
 		return null;
 	}
+
+	if(data.includes('The origin "https://bonkonauts.github.io" has sent too many requests')) {
+		AlertEmitter.emit('error', 'CORS issue, try again later.');
+		return null;
+	}
 	
 	return JSON.parse(data);
 } 
