@@ -222,6 +222,11 @@ alert.Info {
 	color: rgba(var(--primary-color), 0.95) !important;
 }
 
+.sidenav a.rotate:hover svg.icon {
+	transform: rotateX(180deg);
+	transition: 0.9s;
+}
+
 
 ::-webkit-scrollbar {
 	width: 0.75rem;

@@ -32,7 +32,7 @@ class SideNavComponent {
 				<span>Leaderboard</span>
 			</a>
 			<hr/>-->
-			<a onclick="runReload()">
+			<a class="rotate" onclick="runReload()">
 				<i class="icon fas fa-sync-alt"></i>
 				<span>Reload</span>
 			</a>
