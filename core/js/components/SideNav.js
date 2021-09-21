@@ -37,12 +37,12 @@ class SideNavComponent {
 				<span>Reload</span>
 			</a>
 			<hr/>
-			<!--<a class="${path == "/maps" ? 'selected' : ''}" href="/maps">
+			<a class="${path == "/maps" ? 'selected' : ''}" href="/maps">
 				<i class="icon fas fa-table"></i>
 				<span>Maps</span>
 			</a>
 			<hr/>
-			<a class="${path == "/database" ? 'selected' : ''}" href="/database">
+			<!--<a class="${path == "/database" ? 'selected' : ''}" href="/database">
 				<i class="icon fas fa-database"></i>
 				<span>Database</span>
 			</a>
