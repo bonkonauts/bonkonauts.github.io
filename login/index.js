@@ -19,6 +19,7 @@
 		console.log(username, password)
 
 		let user = await proxyLogin(username, password);
+		if(!user) return;
 
 		if(!username) { AlertEmitter.emit('error', 'You must provide a username...'); return; }
 		if(!password) { AlertEmitter.emit('error', 'You must provide a password...'); return; }
@@ -57,33 +58,20 @@
 		setTimeout(() => {
 			window.location.href = '/';
 		}, 1500)
-
-
-		// fetch('/api/login', {
-		// 	method: 'POST',
-		// 	body: data
-		// }).then(res => res.json()).then((res) => {
-		// 	if(res.error) {
-		// 		AlertEmitter.emit('error', res.error);
-		// 		sessionStorage.setItem('user', JSON.stringify({}));
-		// 	}
-		// 	else if(res.success) {
-		// 		AlertEmitter.emit('success', `${res.success} You will be redirected.`)
-
-		// 		sessionStorage.setItem('user', JSON.stringify(res.user));
-
-		// 		var truePath = window.location.pathname == '/login' ? '/' : window.location.pathname; 
-				
-        //         setTimeout(() => {
-        //             window.location.pathname = truePath;
-        //         }, 2500);
-		// 	}
-		// });
-
 	});
 })();
 
 async function proxyLogin(user, pass) {
     let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
-    return await res.json();
+    let data = await res.text();
+
+	console.log(data)
+
+	if(data.includes('See /corsdemo for more info')) {
+		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
+		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
+		return null;
+	}
+	
+	return JSON.parse(data);
 } 

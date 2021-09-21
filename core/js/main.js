@@ -33,7 +33,10 @@ async function runReload() {
     }
 
     AlertEmitter.emit('success', 'Reloading...');
-    window.location.reload();
+
+    setTimeout(() => {
+        window.location.reload();
+    }, 1500);
 }
 
 function getUser() {
