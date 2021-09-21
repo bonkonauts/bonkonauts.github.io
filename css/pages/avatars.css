@@ -1,0 +1,58 @@
+.content {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+}
+
+card {
+	display:flex;
+	position: relative;
+	width: 16vw;
+	height: 19vw;
+	background-color: rgba(var(--frontground-color), 0.9);
+	border: 1px solid rgba(var(--primary-color), 0.7);
+	border-radius: 7px;
+	cursor: pointer;
+	padding: 0.5rem;
+	margin: 1rem;
+	justify-content: center;
+	transition: all 0.5s ease;
+}
+card:hover {
+	-webkit-box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.25);
+	box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.25);
+	transform: scale(1.05);
+}
+card avatar {
+    display: block;
+    width: 11vw;
+    height: 11vw;
+    background-size: 100%;
+	border: 0.2rem solid #4b4954;
+    border-radius: 10rem;
+}
+
+card active::before {
+	content: "(Active)";
+}
+card active {
+	position: absolute;
+    text-align: center;
+	color: rgba(var(--primary-color), 0.9);
+    bottom: 4rem;
+    font-size: 0.8rem;
+}
+
+card note::before {
+	content: "Click to open in \A Bonk Leagues";
+	display: block;  
+	white-space: pre-wrap;
+}
+card note {
+	position: absolute;
+    text-align: center;
+    bottom: 1rem;
+	color: #eee;
+    font-size: 0.8rem;
+}
