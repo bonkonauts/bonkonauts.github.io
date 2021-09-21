@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<meta property="og:title" content="bonkonauts" />
+		<meta property="og:locale" content="en" />
+		<meta name="description" content="bonkonauts - a dashboard for bonk.io accounts, featuring a leaderboard, xp information, and more for http://bonk.io/" />
+		<meta property="og:description" content="bonkonauts - a dashboard for bonk.io accounts, featuring a leaderboard, xp information, and more for http://bonk.io/" />
+		<link rel="canonical" href="https://bonkonauts.github.io/" />
+		<meta property="og:url" content="https://bonkonauts.github.io/" />
+		<meta property="og:site_name" content="bonkonauts" />
+		<meta property="og:image" content="https://bonkonauts.github.io/core/media/logo.png" />
+		<meta name="theme-color" content="#e89f1e">
+		<link rel="stylesheet" href="./core/css/root.css">
+		<link rel="stylesheet" href="./index.css">
+		<script src="./core/js/components/AlertEmitter.js"></script>
+		<script src="./core/js/components/Animation.js"></script>
+		<script src="./core/js/components/SideNav.js"></script>
+		<script src="./core/js/components/TopNav.js"></script>
+		<script src="./core/js/main.js" defer></script>
+		<script src="./index.js"></script>
+		<link rel="shortcut icon" href="./core/media/logo.ico" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
+        <style>
+            @keyframes anim {0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}}
+    
+            content.error {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                color: #ccc;
+            }
+            content.error h1 {
+                color: inherit;
+                font-family: consolas, "Courier New", monospace;
+                /* background: linear-gradient(-15deg, #ff7a7a 0%, #f07715 50%, #a31c1c 100%); */
+                background: linear-gradient(270deg, #e89f1e, #ebc684, #ba862a);
+                background-size: 600% 600%;
+    
+                letter-spacing: -0.2rem;
+    
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 4rem;
+                animation: anim 15s linear infinite
+            }
+            content.error span {
+                font-size: 2rem;
+            }
+            content.error a {
+                background: linear-gradient(270deg, #e89f1e, #ebc684, #ba862a);
+                background-size: 600% 600%;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                border-bottom: 0.2rem solid #ebc684;
+                border-radius: 5px;
+                animation: anim 15s linear infinite
+            }
+        </style>
+        
+        <title>404 - bonkonauts</title>
+	</head>
+    
+	<body>
+		<canvas id="anim" class="canvas-background"></canvas>
+		<script>
+			var animation = new AnimationComponent();
+			animation.start();
+		</script>
+		<content class="error">
+			<wrapper>
+				<h1>404 - invalid_endpoint</h1>
+				<span>Return <a href="/">Home</a></span>
+			</wrapper>
+		</content>
+	</body>
+</html>
