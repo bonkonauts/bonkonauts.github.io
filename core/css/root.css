@@ -223,7 +223,7 @@ alert.Info {
 }
 
 .sidenav a.rotate:hover svg.icon {
-	transform: rotateX(180deg);
+	transform: rotateX(180deg) rotateY(180deg);
 	transition: 0.9s;
 }
 
