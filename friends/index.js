@@ -73,7 +73,7 @@ function updateFriendList(input, friends, legacy_friends) {
 
 	if(input.name == "friends") {
 		for(let friend of friends) {
-			if(friend.name.toLowerCase().indexOf(searchQuery.toLowerCase()) == 0) {
+			if(friend.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0) {
 				friendList += `<li class="user"><span id="name">${friend.name}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span></li>`;
 				friendCount++;
 			}
@@ -83,7 +83,7 @@ function updateFriendList(input, friends, legacy_friends) {
 	{
 		for(let friend of legacy_friends) {
 			if(friend == '') continue;
-			if(friend.toLowerCase().indexOf(searchQuery.toLowerCase()) == 0) {
+			if(friend.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0) {
 				friendList += `<li class="user"><span id="name">${friend}</span></li>`;
 				friendCount++;
 			}
