@@ -10,10 +10,11 @@ class SideNavComponent {
 		var path = window.location.pathname;
 
 		path = pathOverride != "" ? `/${pathOverride}` : path;
+		path = path.slice(0, path.length - 1);
 
 		this.component.innerHTML = `
 			<hr/>
-			<a class="${path == "/" ? 'selected' : ''}" href="/">
+			<a class="${path == "" ? 'selected' : ''}" href="/">
 				<i class="icon fas fa-star"></i>
 				<span>Experience</span>
 			</a>
