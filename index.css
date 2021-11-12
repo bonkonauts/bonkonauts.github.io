@@ -16,8 +16,8 @@ card {
 	transition: 0.35s;
 }
 card:hover {
-	-webkit-box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.25);
-	box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.25);
+	-webkit-box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.15);
+	box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.15);
 }
 card item {
 	display: block;
