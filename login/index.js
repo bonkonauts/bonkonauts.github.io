@@ -63,13 +63,13 @@ async function proxyLogin(user, pass) {
     let data = await res.text();
 
 	if(data.includes('See /corsdemo for more info')) {
-		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
+		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporary access"')
 		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
 		return null;
 	}
 
 	if(data.includes('The origin "https://bonkonauts.github.io" has sent too many requests')) {
-		AlertEmitter.emit('error', 'CORS issue, try again later.');
+		AlertEmitter.emit('error', 'CORS issue, please wait and try again later.');
 		return null;
 	}
 	
