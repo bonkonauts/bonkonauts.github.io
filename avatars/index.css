@@ -14,7 +14,6 @@ card {
 	background-color: rgba(var(--frontground-color), 0.9);
 	border: 1px solid rgba(var(--primary-color), 0.7);
 	border-radius: 7px;
-	cursor: pointer;
 	padding: 0.5rem;
 	margin: 1rem;
 	justify-content: center;
@@ -27,6 +26,7 @@ card avatar {
     display: block;
     width: 11vw;
     height: 11vw;
+    cursor: pointer;
     background-size: 100%;
     border: 0.2rem solid #4b4954;
     border-radius: 10rem;
