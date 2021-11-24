@@ -22,7 +22,7 @@ function init() {
 	// dbid
 	tmpIDC = document.createElement('item');
 	tmpIDC.style.color = "rgba(var(--font-color), 0.9)";
-	    tmpIDC.innerHTML = "<strong> Your ID: </strong>" + window.user.id;
+	    tmpIDC.innerHTML = "<strong> Your ID: </strong>" + window.user.id.toLocaleString();
 	    tmpIDC.id = "idc";
 	friendsContainer.appendChild(tmpIDC);
 
