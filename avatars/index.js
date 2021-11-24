@@ -3,7 +3,32 @@ function init() {
 	const ACTIVE_AVATAR = window.user.activeAvatarNumber;
 
 	var tmpCard, tmpAvatar, tmpActive, tmpPreview, tmpBL;
+	window.currentlyPreviewed = {};
 	tmpActive = document.createElement('active');
+
+	var mainContainer = document.querySelector('main');
+	tmpDiv = document.createElement('div');
+	    tmpDiv.id = "image-viewer";
+	    tmpW = document.createElement('div');
+	        tmpW.className = "close";
+			tmpI = document.createElement('i');
+				tmpI.className = "fas fa-times";
+			tmpW.appendChild(tmpI);
+			tmpW.addEventListener('click', (e) => {
+				if( e.target !== tmpW) return;
+				document.querySelector('#image-viewer').style.display = "none";
+			});
+		tmpDiv.appendChild(tmpW);
+	    tmpImg = document.createElement('img');
+	        tmpImg.className = 'modal-content';
+	        tmpImg.id = 'full-image';
+	    tmpDiv.appendChild(tmpImg);
+	    tmpDiv.addEventListener('click', (e) => {
+	    	if( e.target !== tmpDiv) return;
+			document.querySelector('#image-viewer').style.display = "none";
+		});
+	mainContainer.appendChild(tmpDiv);
+	
 
 	var avatarContainer = document.querySelector('section.content');
 	let count = 1;
@@ -13,8 +38,14 @@ function init() {
 		tmpCard = document.createElement('card');
 			tmpAvatar = document.createElement('avatar');
 				tmpAvatar.setAttribute('style', `background:url(${previewURL},#111);background-size: 100%;`);
+				tmpAvatar.id = count;
 				tmpAvatar.addEventListener('click', (e) => {
-					alert("This is not ready yet!")
+					var previewer = document.querySelector('#full-image');
+					previewer.src = e.srcElement.style.backgroundImage.split('"')[1].split(',')[0];
+					currentlyPreviewed.skin = previewer.src;
+					currentlyPreviewed.slot = e.srcElement.id;
+
+					document.querySelector('#image-viewer').style.display = "block";
 				});
 			tmpCard.appendChild(tmpAvatar);
 			tmpPreview = document.createElement('p');
@@ -35,6 +66,11 @@ function init() {
 		
 		count++;
 	}
+}
+
+
+function closePreview() {
+	document.querySelector('#image-viewer').style.display = "none";			
 }
 
 function createPreviewURL(avatar) {
