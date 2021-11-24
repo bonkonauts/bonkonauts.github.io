@@ -15,7 +15,6 @@ function init() {
 				tmpI.className = "fas fa-times";
 			tmpW.appendChild(tmpI);
 			tmpW.addEventListener('click', (e) => {
-				if( e.target !== tmpW) return;
 				document.querySelector('#image-viewer').style.display = "none";
 			});
 		tmpDiv.appendChild(tmpW);
