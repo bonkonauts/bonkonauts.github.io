@@ -106,7 +106,7 @@ async function proxyMaps(startingFrom=0) {
 	let parsed = JSON.parse(data);
 	MAPS = MAPS.concat(parsed.maps);
 	if(parsed.more == true) {
-		await proxyMaps(data.maps.length);
+		await proxyMaps(MAPS.length);
 	}
 	else
 	{
