@@ -4,6 +4,12 @@
   	grid-gap: 1rem;
 }
 
+#idc {
+	position: absolute;
+	margin-top: -3vh;
+	margin-left: 1vh;
+}
+
 card {
 	position: relative;
 	width: 95%;
@@ -29,7 +35,7 @@ card item {
 	font-size: 1.2rem;
 	color: rgba(var(--font-color), 0.9);
 }
-card item strong {
+item strong {
 	color: rgba(var(--primary-color), 0.7);
 	padding-right: 0.25rem;
 }
