@@ -5,7 +5,7 @@ Hello! **bonkonauts** is a bonk.io account viewer / dashboard. By logging in wit
 
 `Note: The service is only available if you login with an account.`
 
-![Discord Banner 2](https://discordapp.com/api/guilds/908765927800184893/widget.png?style=banner2)
+[![Bonkonauts](https://discordapp.com/api/guilds/908765927800184893/widget.png?style=banner2)](https://discord.gg/FUg9dfJwTt)
 
 ## Pages / Features
 
