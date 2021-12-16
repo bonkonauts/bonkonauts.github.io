@@ -20,7 +20,6 @@
 		if(!user) return;
 
 		if(!username) { AlertEmitter.emit('error', 'You must provide a username...'); return; }
-		if(!password) { AlertEmitter.emit('error', 'You must provide a password...'); return; }
 
 		if(user.r != 'success') {
 			var error = "";
