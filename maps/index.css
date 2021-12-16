@@ -4,6 +4,15 @@
   	grid-gap: 1rem;
 }
 
+.loading {
+	position: absolute;
+	color: white;
+	display: block;
+	left: 55%;
+	top: 50%;
+	font-size: 2rem;
+}
+
 card {
 	position: relative;
 	width: 95%;
