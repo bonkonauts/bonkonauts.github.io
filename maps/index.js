@@ -1,7 +1,12 @@
+function hideLoading() {
+	document.querySelector("div.loading").style.display = 'none';
+}
 
 async function init() {
 
 	window.MAPS = [];
+    
+
 	await proxyMaps();
 	var mapListStr = "";
 	for(let map of MAPS) {
@@ -17,10 +22,6 @@ async function init() {
 	}
 
 	
-	// var flashMapStr = "";
-	// for(let map of FLASH_MAPS) {
-	// 	console.log(map)
-	// }
 
 	var mapContainer = document.querySelector('section.content');
 	// maps
@@ -47,26 +48,8 @@ async function init() {
 		tmpCard.appendChild(tmpItem);
 	mapContainer.appendChild(tmpCard);
 
-	// // legacy friends
-	// tmpCard = document.createElement('card');
-	// 	tmpItem = document.createElement('item');
-	// 		tmpItem.id = "flash_title";
-	// 		tmpItem.innerHTML = `<strong>Flash Friends</strong> (${legacyFriendCount})`;
-	// 	tmpCard.appendChild(tmpItem);
-	// 	if(legacyFriendCount != 0) {
-	// 		tmpSearch = document.createElement('input');
-	// 		tmpSearch.addEventListener('input', (ev) => { 
-	// 			updateFriendList(ev.target, FRIENDS, LEGACY_FRIENDS)
-	// 		});
-	// 		tmpSearch.setAttribute('placeholder', "Username...");
-	// 		tmpSearch.name = "legacy";
-	// 		tmpCard.appendChild(tmpSearch);
-	// 	}
-	// 	tmpItem = document.createElement('item');
-	// 		tmpItem.id = 'legacy';
-	// 		tmpItem.innerHTML = legacyFriendCount != 0 ? `<ul><b><li><span id="name">Username</span></li></b><hr/>${legacyFriendListStr}</ul>` : "There are no friends to display...";
-	// 	tmpCard.appendChild(tmpItem);
-	// friendsContainer.appendChild(tmpCard);
+	hideLoading();
+
 }
 
 async function proxyFlashMaps(startingFrom=0) {
