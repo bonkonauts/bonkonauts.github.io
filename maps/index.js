@@ -1,5 +1,21 @@
-function hideLoading() {
-	document.querySelector("div.loading").style.display = 'none';
+var prevElem;
+function showStats(e, elem) {
+// 	if(elem == prevElem) return;
+    
+//     var stats = document.querySelector('stats');
+//     var elemBounds = elem.getBoundingClientRect()
+
+//     stats.style.top = `${(elemBounds.y / 2)}px`;
+//     stats.style.left = `${e.clientX}px`;
+
+// 	stats.style.display = "block";
+//     console.log(e, )
+//     prevElem = elem;
+}
+
+function hideStats() {
+// 	document.querySelector('stats').style.display = "none";
+//     prevElem = null;
 }
 
 async function init() {
@@ -10,7 +26,7 @@ async function init() {
 	await proxyMaps();
 	var mapListStr = "";
 	for(let map of MAPS) {
-		mapListStr += `<li class="user"><span id="name">${decodeURIComponent(map.name)}</span><span id="dbid">${map.id.toLocaleString()}</span><span id="U/D"><span class="up">${map.vu}</span>/<span class="down">${map.vd}</span></span><span id="created">${map.creationdate.split(' ')[0]}</span></li>`;
+		mapListStr += `<li class="user" onmouseover="showStats(event, this)" onmouseout="hideStats(this)"><span id="name">${decodeURIComponent(map.name)}</span><span id="dbid">${map.id.toLocaleString()}</span><span id="U/D">${map.published == 1 ? (map.vu == 0 && map.vd == 0 ? '<span class="down">No Votes</span>' : `<span class="up">${map.vu}</span> / <span class="down">${map.vd}</span>`): '<span class="down">PRIVATE</span>'}</span><span id="created">${map.creationdate.split(' ')[0]}</span></li>`;
 	}
 
 	window.FLASH_MAPS = "";
@@ -18,12 +34,16 @@ async function init() {
 	let flashMapCnt = getQuery(FLASH_MAPS, 'cant');
 	var flashMapListStr = "";
 	for(let i = 0; i < flashMapCnt; i++) {
-		flashMapListStr += `<li class="user"><span id="name">${decodeURIComponent(getQuery(FLASH_MAPS, `mapname${i}`).replace(/\+/g, ' '))}</span><span id="dbid">${Number(getQuery(FLASH_MAPS, `mapid${i}`)).toLocaleString()}</span><span id="U/D"><span class="up">${getQuery(FLASH_MAPS, `thumbsup${i}`)}</span>/<span class="down">${getQuery(FLASH_MAPS, `thumbsdown${i}`)}</span></span><span id="created">${getQuery(FLASH_MAPS, `creationdate${i}`).split(' ')[0]}</span></li>`;
+		flashMapListStr += `<li class="user"><span id="name">${decodeURIComponent(getQuery(FLASH_MAPS, `mapname${i}`).replace(/\+/g, ' '))}</span><span id="dbid">${Number(getQuery(FLASH_MAPS, `mapid${i}`)).toLocaleString()}</span><span id="U/D">${getQuery(FLASH_MAPS, `public${i}`) == 1 ? (getQuery(FLASH_MAPS, `thumbsup${i}`) == 0 && getQuery(FLASH_MAPS, `thumbsdown${i}`) == 0 ? '<span class="down">No Votes</span>' : `<span class="up">${getQuery(FLASH_MAPS, `thumbsup${i}`)}</span> / <span class="down">${getQuery(FLASH_MAPS, `thumbsdown${i}`)}</span>`) : '<span class="down">PRIVATE</span>'}</span><span id="created">${getQuery(FLASH_MAPS, `creationdate${i}`).split(' ')[0]}</span></li>`;
 	}
 
 	
 
 	var mapContainer = document.querySelector('section.content');
+
+    // stats
+    mapContainer.innerHTML = '<stats style="display: none"></stats>'
+
 	// maps
 	tmpCard = document.createElement('card');
 		tmpItem = document.createElement('item');
@@ -47,9 +67,6 @@ async function init() {
 			tmpItem.innerHTML = flashMapCnt != 0 ? `<ul><b><li><span id="name">Name</span><span id="dbid">DBID</span><span id="U/D">Up/Down</span><span id="created">Created</span></li></b><hr/>${flashMapListStr}</ul>` : "There are no maps to display...";
 		tmpCard.appendChild(tmpItem);
 	mapContainer.appendChild(tmpCard);
-
-	hideLoading();
-
 }
 
 async function proxyFlashMaps(startingFrom=0) {
