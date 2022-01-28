@@ -4,6 +4,7 @@ Hello! **bonkonauts** is a bonk.io account viewer / dashboard. By logging in wit
 
 
 `Please Note: Bonkonauts is currently in a demo state, full functionality may not be available yet.`
+
 `Note: The service is only available if you login with an account.`
 
 [![Bonkonauts](https://discordapp.com/api/guilds/908765927800184893/widget.png?style=banner2)](https://discord.gg/FUg9dfJwTt)
