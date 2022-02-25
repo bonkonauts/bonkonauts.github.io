@@ -9,7 +9,7 @@ function init() {
 
 	var friendListStr = "";
 	for(let friend of FRIENDS) {
-		friendListStr += `<li class="user"><span id="name">${friend.name}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span></li>`;
+		friendListStr += `<li class="user"><span id="name">${friend.name.substring(0, 15)}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span></li>`;
 	}
 	var legacyFriendListStr = "";
 	var legacyFriendCount = 0;
