@@ -16,10 +16,10 @@ function init() {
 		tmpCard.appendChild(tmpItem);
 	calcContainer.appendChild(tmpCard);
 
-	// Level goal calculator
+	// Goal calculator
 	tmpCard = document.createElement('card');
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<strong>Level Goal Calculator</strong><ul><li>Simply input your starting XP/Level, and then a goal XP/Level. <comment>(When logged in, it will default to your XP/Level for starting values!)</comment></li></ul><div class="inputs"><span>Start:</span><input type="text" id="levelS" placeholder="Level" oninput="updateGoal('level', this.value, true)"/><input type="text" id="xpS" placeholder="XP" oninput="updateGoal('xp', this.value, true)"/></div><div class="inputs"><span>Goal:</span><input type="text" id="levelG" placeholder="Level" oninput="updateGoal('level', this.value, false)"/><input type="text" id="xpG" placeholder="XP" oninput="updateGoal('xp', this.value, false)"/></div><div id="goal-out"></div>`;
+			tmpItem.innerHTML = `<strong>Goal Calculator</strong><ul><li>Simply input your starting XP/Level, and then a goal XP/Level. <comment>(When logged in, it will default to your XP/Level for starting values!)</comment></li></ul><div class="inputs"><span>Start:</span><input type="text" id="levelS" placeholder="Level" ${window.user && window.user.username ? `value="${xpToLevel(window.user.xp).toLocaleString()}"` : ""} oninput="updateGoal('level', this.value, true)"/><input type="text" id="xpS" placeholder="XP" ${window.user && window.user.username ? `value="${window.user.xp.toLocaleString()}"` : ""} oninput="updateGoal('xp', this.value, true)"/></div><div class="inputs"><span>Goal:</span><input type="text" id="levelG" placeholder="Level" oninput="updateGoal('level', this.value, false)"/><input type="text" id="xpG" placeholder="XP" oninput="updateGoal('xp', this.value, false)"/></div><div id="goal-out"></div>`;
 		tmpCard.appendChild(tmpItem);
 	calcContainer.appendChild(tmpCard);
 }
