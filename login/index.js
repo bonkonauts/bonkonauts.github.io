@@ -28,14 +28,15 @@
 					error = `No account with that username.`;
 				break;
 				case 'password':
-					error = `Incorrect password, try again.`;
+					error = 'Invalid password!';
 				break;
 				case 'ratelimited':
-					error = `Rate limited, try again later.`;
+					error = 'Our proxy server has been ratelimited by bonk.io. Please try again in a bit.';
 				break;
 				default:
-					error = `An unknown error has occurred: ${user.e}`;
+					error = e;
 				break;
+					
 			}
 			AlertEmitter.emit('error', error);
 			window.user = {};
@@ -52,7 +53,7 @@
 		AlertEmitter.emit('success', `Hi, ${user.username}! You will be redirected.`);
 
 		setTimeout(() => {
-			window.location.href = '/';
+			history.back();
 		}, 1500)
 	});
 })();

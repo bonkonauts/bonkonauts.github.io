@@ -12,6 +12,7 @@ body {
 	align-items: center;
 	padding: 50px 40px;
 	color: rgba(var(--font-color), 0.9);
+	width: 18em;
 	font-size: 16px;
 	background-color: rgba(var(--frontground-color), 0.9);
 	border-radius: 8px;
@@ -108,4 +109,18 @@ body {
 
 span#output {
 	font-size: 12px;
+}
+
+div.head {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 18em;
+}
+.back {
+	position: absolute;
+	font-size: 3rem;
+	padding: 1rem;
+	color: rgba(var(--primary-color), 0.5);
+	cursor: pointer;
 }

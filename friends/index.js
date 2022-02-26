@@ -19,6 +19,9 @@ function init() {
 		legacyFriendCount++;
 	}
 
+	friendsContainer.innerHTML = '';
+
+
 	// dbid
 	tmpIDC = document.createElement('item');
 	tmpIDC.style.color = "rgba(var(--font-color), 0.9)";

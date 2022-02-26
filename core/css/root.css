@@ -8,8 +8,11 @@
 	--info-color: 63, 126, 181;
 	--font-color: 221, 221, 221;
 
+	--top-nav-opacity: 0.9;
 	--top-nav-width:  100vw;
 	--top-nav-height:  12vh;
+
+	--side-nav-opacity: 0.95;
 	--side-nav-width:  18vw;
 	--side-nav-height: 88vw;
 }
@@ -124,7 +127,7 @@ alert.Info {
 	align-items: left;
 	text-align: left;
 	right: 0;
-	background-color: rgba(var(--frontground-color), 0.8);
+	background-color: rgba(var(--frontground-color), var(--top-nav-opacity));
 }
 .topnav .logo {
 	position: relative;
@@ -181,7 +184,7 @@ alert.Info {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: rgba(var(--frontground-color), 0.8);
+	background-color: rgba(var(--frontground-color), var(--side-nav-opacity));
 }
 .sidenav hr {
 	position: relative;
@@ -241,4 +244,23 @@ alert.Info {
 }
 ::-webkit-scrollbar-thumb:hover {
 	background-color: rgba(var(--primary-color),0.7);;
+}
+
+.loading {
+	position: absolute;
+	color: #ddd;
+	display: block;
+	left: 55%;
+	top: 50%;
+	font-size: 2rem;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

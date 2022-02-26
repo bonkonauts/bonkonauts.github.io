@@ -1,0 +1,92 @@
+.content {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+  	grid-gap: 1rem;
+}
+
+card {
+	position: relative;
+	width: 95%;
+	height: 90%;
+	background-color: rgba(var(--frontground-color), 0.9);
+	border: 1px solid rgba(var(--primary-color), 0.7);
+	border-radius: 7px;
+	cursor: default;
+	margin: 1rem;
+	transition: 0.35s;
+}
+card:hover {
+	-webkit-box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.15);
+	box-shadow: 0 0 10px 3px rgba(var(--primary-color), 0.15);
+}
+card item {
+	display: block;
+	position: relative;
+	width: 100%;
+	padding: 0.75vw;
+	margin: 0rem 0.5rem 0rem 0.5rem;
+	font-size: 1.2rem;
+	color: rgba(var(--font-color), 0.9);
+}
+card item strong {
+	color: rgba(var(--primary-color), 0.7);
+	padding-right: 0.25rem;
+}
+card item comment {
+    font-size: 0.9rem;
+    color: #9bb8dd;
+}
+card item ul {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	margin-left: 1rem;
+	padding: 0;
+}
+card item li {
+	margin-top: 0.25rem;
+	font-size: 1rem;
+}
+
+card item div.progress-stats {
+	display: flex;
+	font-size: 0.9rem;
+	color: #787878;
+	width: 100%;
+	margin-top: -0.75rem;
+	margin-bottom: 0.5rem;
+	align-items: center;
+	justify-content: center;
+}
+card item div.progress-wrapper {
+	width: 97%;
+	height: 3rem;
+	transform: scale(0.95);
+
+	background-color: rgba(0,0,0, .3);
+	border-radius: 3px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5) inset;
+	display: block;
+
+	transition: transform 0.3s;
+
+}
+card item div.progress-wrapper:hover {
+	transform: scale(1);
+}
+card item div.progress {
+	display: flex;
+	height: 100%;
+	align-items: center;
+	justify-content: center;
+	background-image:
+	   -webkit-linear-gradient(-40deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+	   -webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+	   -webkit-linear-gradient(left, #7a683a, #9c813c, #b98f25, #ffb700);
+
+    border-radius: 3px; 
+    background-size: 2rem 1rem, 100% 100%, 100% 100%;
+}

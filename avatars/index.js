@@ -1,4 +1,5 @@
-function init() {
+function init() {	
+	console.log(window.user)
 	const AVATARS = [window.user.avatar1, window.user.avatar2, window.user.avatar3, window.user.avatar4, window.user.avatar5];
 	const ACTIVE_AVATAR = window.user.activeAvatarNumber;
 
@@ -30,6 +31,7 @@ function init() {
 	
 
 	var avatarContainer = document.querySelector('section.content');
+	avatarContainer.innerHTML = '';
 	let count = 1;
 	for(let avatar of AVATARS) {
 		let previewURL = createPreviewURL(avatar);

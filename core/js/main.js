@@ -6,12 +6,6 @@
     var animation = new AnimationComponent();
     animation.start();
 
-    window.user = getUser();
-    if(!user || (user && Object.keys(user).length == 0)) {
-        window.location.href = '/login';
-        return;
-    }
-
     var sideNav = new SideNavComponent();
     sideNav.prependTo(document.querySelector('main'));
 
@@ -21,14 +15,26 @@
     init();
 })();
 
+function serveLogin() {
+    let user = sessionStorage.getItem('user');
+    if(!user || (user && Object.keys(user).length == 0)) {
+        window.location.href = '/login';
+        return;
+    }
+}
+
 async function runReload() {
     var user = sessionStorage.getItem('username');
     var pass = sessionStorage.getItem('password');
+    if(!user || !pass) {
+        AlertEmitter.emit('error', `Could not reload because you are not logged in...`);
+        return;   
+    }
     let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
     res = await res.json();
 
     if(res.r != 'success') {
-        AlertEmitter.emit('error', `Could not reload... '${res.e}'`);
+        AlertEmitter.emit('error', parseLoginErr(res.e));
         return;
     }
 
@@ -37,6 +43,20 @@ async function runReload() {
     setTimeout(() => {
         window.location.reload();
     }, 1500);
+}
+
+function parseLoginErr(e) {
+    switch(e) {
+        case 'username_fail':
+            return `No account with that username.`;
+        case 'password':
+            return 'Invalid password!';
+        case 'ratelimited':
+                return 'Our proxy server has been ratelimited by bonk.io. Please try again in a bit.';
+        default:
+            return e;
+            
+    }
 }
 
 function getUser() {

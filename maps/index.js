@@ -19,7 +19,6 @@ function hideStats() {
 }
 
 async function init() {
-
 	window.MAPS = [];
     
 

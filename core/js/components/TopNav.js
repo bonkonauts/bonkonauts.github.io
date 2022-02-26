@@ -6,9 +6,9 @@ class TopNavComponent {
 	}
 
 	buildComponent() {
-		var userValid = window.user && window.user.username ? window.user.username : null;
+		var userValid = window.user && window.user.username ? window.user.username : undefined;
 		var path = window.location.pathname.slice(1);
-		path = path == '' ? 'experience/' : path;
+		path = path == '' ? 'about/' : path;
 		path = path.slice(0, path.length - 1);
 
 		this.component.innerHTML = `
@@ -19,7 +19,7 @@ class TopNavComponent {
 				<span id="title">
 					${this.capitalize(path)}
 				</span>
-				${userValid != "" ? `
+				${typeof userValid != 'undefined' ? `
 				<div id="subtitle">
 					<li>${userValid}</li>
 				</div>
