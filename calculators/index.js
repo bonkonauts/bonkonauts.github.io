@@ -118,7 +118,7 @@ function updateGoal(inputType, rawVal, isStart) {
 
 
     var progress = ((startXP / goalXP) * 100).toFixed(2);
-    output.innerHTML = `<hr/><br/><div class="progress-stats">${startXP.toLocaleString()} / ${goalXP.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${progress}%"><perc>${progress}%</perc></div></div><item><strong>Gameplay</strong><li>Win <comment>${winCount.toLocaleString()}</comment> games!</li></item><item><strong>XP Boosting</strong><li>Minutes: ~<comment>${farmMinutesTillNext.toFixed(2)}</comment></li><li>Hours: ~<comment>${farmHoursTillNext.toFixed(2)}</comment></li><li>Days: ~<comment>${farmDaysTillNext.toFixed(2)}</comment></li></item>`
+    output.innerHTML = `<hr/><br/><div class="progress-stats">${startXP.toLocaleString()} / ${goalXP.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${progress}%"><perc>${progress}%</perc></div></div><item><strong>Gameplay</strong><li>Win <comment>${winCount.toLocaleString()}</comment> games!</li></item><item><strong>XP Boosting</strong><li>Minutes: ~<comment>${farmMinutesTillNext.toFixed(2)}</comment></li><li>Hours: ~<comment>${farmHoursTillNext.toFixed(2)}</comment></li><li>Days: ~<comment>${farmDaysTillNext.toFixed(2)}</comment></li></item><br/>`
 }
 
 // input filter
