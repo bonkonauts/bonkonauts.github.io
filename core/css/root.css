@@ -1,3 +1,8 @@
+@font-face {
+	font-family: SpaceMono;
+	src: url(./SpaceMono-Regular.ttf);
+}
+
 :root {
 	--background-color: 13, 17, 23;
 	--frontground-color: 25, 32, 43;
@@ -21,7 +26,7 @@
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
-	font-family: consolas, "Courier New", monospace;
+	font-family: SpaceMono, monospace;
 }
 
 html, body {
@@ -229,6 +234,17 @@ alert.Info {
 	transform: rotateX(180deg) rotateY(180deg);
 	transition: 0.9s;
 }
+
+.sidenav a subtabs {
+	display: grid;
+} 
+.sidenav a subtabs.hidden {
+	display: none;
+}
+.sidenav a.subtab {
+	border-radius: 6px;
+}
+
 
 
 ::-webkit-scrollbar {

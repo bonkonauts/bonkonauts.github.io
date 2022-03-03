@@ -15,12 +15,10 @@
     init();
 })();
 
-function serveLogin() {
-    let user = sessionStorage.getItem('user');
-    if(!user || (user && Object.keys(user).length == 0)) {
-        window.location.href = '/login';
-        return;
-    }
+function runLogin() {
+    console.log('hi')
+    window.location.href = `/login?from=${window.location.pathname}`;
+    return;
 }
 
 async function runReload() {
@@ -37,6 +35,12 @@ async function runReload() {
         AlertEmitter.emit('error', parseLoginErr(res.e));
         return;
     }
+
+    window.user = res;
+    sessionStorage.setItem('user', JSON.stringify(res));
+
+    sessionStorage.setItem('username', user);
+    sessionStorage.setItem('password', pass);
 
     AlertEmitter.emit('success', 'Reloading...');
 

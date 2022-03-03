@@ -3,6 +3,8 @@
 
 	AlertEmitter.emit("info", "Login with your bonk.io account here!")
 
+	
+
 	window.user = {};
 	sessionStorage.setItem('user', JSON.stringify({}));
 
@@ -12,6 +14,8 @@
 	document.querySelector('form.login-form').onsubmit = (async (e) => {
 		e.preventDefault();
 		var form = e.target;
+
+		console.log(document.referer)
 		
 		var username = document.querySelector('form.login-form div.form-input-material input#username').value;
 		var password = document.querySelector('form.login-form div.form-input-material input#password').value;
@@ -68,10 +72,18 @@ async function proxyLogin(user, pass) {
 		return null;
 	}
 
-	if(data.includes('The origin "https://bonkonauts.github.io" has sent too many requests')) {
+	if(data.includes(' has sent too many requests')) {
 		AlertEmitter.emit('error', 'CORS issue, please wait and try again later.');
 		return null;
 	}
-	
-	return JSON.parse(data);
+
+	var result;
+	try {
+		result = JSON.parse(data);
+	}
+	catch(e) {
+		result = { r: 'error', e: 'unknown' };
+		console.error(data);
+	}
+	return result;
 } 
