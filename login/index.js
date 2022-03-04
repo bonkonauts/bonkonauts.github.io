@@ -3,8 +3,6 @@
 
 	AlertEmitter.emit("info", "Login with your bonk.io account here!")
 
-	
-
 	window.user = {};
 	sessionStorage.setItem('user', JSON.stringify({}));
 
@@ -57,7 +55,7 @@
 		AlertEmitter.emit('success', `Hi, ${user.username}! You will be redirected.`);
 
 		setTimeout(() => {
-			history.back();
+			window.location.href = '/';
 		}, 1500)
 	});
 })();
