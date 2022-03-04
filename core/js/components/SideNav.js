@@ -19,8 +19,8 @@ class SideNavComponent {
 		this.addTab({currentPath: path, icon: 'fas fa-user-circle', text: 'Avatars'});
 		this.addTab({currentPath: path, icon: 'fas fa-users', text: 'Friends'});
 		this.addTab({currentPath: path, icon: 'fas fa-table', text: 'Maps', usesSubTabs: true});
-		this.addSubTab(this.tabs["Maps"], {icon: 'fas fa-map-marked-alt', text: 'Your Maps', pathOverride: '/yourmaps'}, true);
-		// this.addSubTab(this.tabs["Maps"], {icon: 'fas fa-fire', text: "Hot Maps", pathOverride: '/hotmaps'});
+		this.addSubTab(this.tabs["Maps"], {currentPath: path, icon: 'fas fa-map-marked-alt', text: 'Your Maps', pathOverride: '/yourmaps'}, true);
+		// this.addSubTab(this.tabs["Maps"], {currentPath: path, icon: 'fas fa-fire', text: "Hot Maps", pathOverride: '/hotmaps'});
 		// this.addTab({currentPath: path, icon: 'fas fa-trophy', text: 'Leaderboard'});
 		this.addTab({currentPath: path, icon: 'fas fa-sync-alt', text: 'Reload', additionalClass: 'rotate', onClick: runReload});
 		this.addTab({currentPath: path, icon: `fas fa-sign-${typeof userValid != 'undefined' ? 'out' : 'in'}`, text: typeof userValid != 'undefined' ? 'Logout' : "Login", onClick: runLogin});
@@ -45,7 +45,8 @@ class SideNavComponent {
 
 		var path = typeof pathOverride == 'undefined' ? `/${tabName.toLowerCase()}` : pathOverride.toLowerCase();
 		var tab = document.createElement('a');
-			tab.className = tabName == sessionStorage.getItem('page') ? 'selected' : '';
+			// tab.className = tabName == sessionStorage.getItem('page') ? 'selected' : '';
+			tab.className = path == currentPath ? 'selected' : '';
 			typeof additionalClass == "string" ? tab.classList.add(additionalClass) : null;
 			tab.innerHTML = `<i class="icon ${iconClass}"></i><span>${tabName}</span><subtabs></subtabs>`;
 			if(typeof onClick == 'function') tab.onclick = onClick;

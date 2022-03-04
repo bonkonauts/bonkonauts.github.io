@@ -1,5 +1,5 @@
 function init() {	
-	const AVATARS = [window.user.avatar1, window.user.avatar2, window.user.avatar3, window.user.avatar4, window.user.avatar5];
+	window.AVATARS = [window.user.avatar1, window.user.avatar2, window.user.avatar3, window.user.avatar4, window.user.avatar5];
 	const ACTIVE_AVATAR = window.user.activeAvatarNumber;
 
 	var tmpCard, tmpAvatar, tmpActive, tmpPreview, tmpBL;
@@ -18,6 +18,7 @@ function init() {
 				tmpAvatar.setAttribute('style', `background:url(${previewURL},#111);background-size: 100%;`);
 				tmpAvatar.id = count;
 				tmpAvatar.addEventListener('click', (e) => {
+					window.currentlyPreviewed.slot = e.target.id;
 					buildPreviewer(e.srcElement);
 					document.querySelector('#image-viewer').style.display = "block";
 				});
@@ -45,9 +46,11 @@ function init() {
 function buildPreviewer(targetSkin) {
 	if(document.querySelector('#image-viewer')) document.querySelector('#image-viewer').innerHTML = '';
 
+	currentlyPreviewed.skin = targetSkin.style.backgroundImage.split('"')[1].split(',')[0];
+
 	var mainContainer = document.querySelector('main');
-	tmpDiv = document.createElement('div');
-	    tmpDiv.id = "image-viewer";
+	imgViewer = document.createElement('div');
+	    imgViewer.id = "image-viewer";
 		tmpH = document.createElement('header');
 			tmpH.className = "img-header"
 			tmpNote = document.createElement('div');
@@ -60,26 +63,60 @@ function buildPreviewer(targetSkin) {
 				tmpW.appendChild(tmpI);
 				tmpW.addEventListener('click', closePreview);
 			tmpH.appendChild(tmpW);
-		tmpDiv.appendChild(tmpH);
+		imgViewer.appendChild(tmpH);
+		tmpLeftArrow = document.createElement('div');
+			tmpLeftArrow.className = `arrow left ${currentlyPreviewed.slot == 1 && 'disabled'}`;
+			tmpI = document.createElement('i');
+				tmpI.className = "fa-solid fa-angle-left";
+			tmpLeftArrow.appendChild(tmpI);
+			currentlyPreviewed.slot != 1 && tmpLeftArrow.addEventListener('click', previewLeft);
+		imgViewer.appendChild(tmpLeftArrow);
+		tmpRightArrow = document.createElement('div');
+			tmpRightArrow.className = `arrow right ${currentlyPreviewed.slot == 5 && 'disabled'}`;
+			tmpI = document.createElement('i');
+				tmpI.className = "fa-solid fa-angle-right";
+			tmpRightArrow.appendChild(tmpI);
+			currentlyPreviewed.slot != 5 && tmpRightArrow.addEventListener('click', previewRight);
+		imgViewer.appendChild(tmpRightArrow);
 		tmpPreview = document.createElement('div');
 			tmpPreview.className = "img-preview";
 			skinImg = document.createElement('img');
 				skinImg.className = 'modal-content';
 				skinImg.id = 'full-image';
-				skinImg.src = targetSkin.style.backgroundImage.split('"')[1].split(',')[0];
+				skinImg.src = currentlyPreviewed.skin;
 			tmpPreview.appendChild(skinImg);
-	    tmpDiv.appendChild(tmpPreview);
-	mainContainer.insertBefore(tmpDiv, mainContainer.firstChild);
-
-	currentlyPreviewed.skin = skinImg.src;
-	currentlyPreviewed.slot = skinImg.id;
-
+	    imgViewer.appendChild(tmpPreview);
+	mainContainer.insertBefore(imgViewer, mainContainer.firstChild);
 
 	window.panzoom = Panzoom(document.querySelector('#full-image'), { });
 	panzoom.zoom(1);
 	// $('section.content').find('#full-image').panzoom('reset');
 	panzoom.bind();
 	tmpPreview.addEventListener('wheel', panzoom.zoomWithWheel);
+}
+
+function previewLeft() {
+	let nextSlot = Number(currentlyPreviewed.slot) - 1;
+	if(nextSlot == 0) return;
+	nextSlot == 1 && document.querySelector('.left').classList.add('disabled');
+	nextSlot != 5 && document.querySelector('.right').classList.remove('disabled');
+
+	let skinSrc = createPreviewURL(AVATARS[nextSlot - 1]);
+	document.querySelector('#full-image').src = skinSrc;
+	currentlyPreviewed.slot = nextSlot;
+	currentlyPreviewed.skin = skinSrc;
+}
+
+function previewRight() {
+	let nextSlot = Number(currentlyPreviewed.slot) + 1;
+	if(nextSlot == 6) return;
+	nextSlot == 5 && document.querySelector('.right').classList.add('disabled');
+	nextSlot != 1 && document.querySelector('.left').classList.remove('disabled');
+
+	let skinSrc = createPreviewURL(AVATARS[nextSlot - 1]);
+	document.querySelector('#full-image').src = skinSrc;
+	currentlyPreviewed.slot = nextSlot;
+	currentlyPreviewed.skin = skinSrc;
 }
 
 function closePreview() {

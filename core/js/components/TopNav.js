@@ -7,11 +7,11 @@ class TopNavComponent {
 
 	buildComponent() {
 		var userValid = window.user && window.user.username ? window.user.username : undefined;
-		var pageName = sessionStorage.getItem('page');
-		var page = pageName ? pageName : 'About';
-		// var path = window.location.pathname.slice(1);
-		// path = path == '' ? 'about/' : path;
-		// path = path.slice(0, path.length - 1);
+		// var pageName = sessionStorage.getItem('page');
+		// var path = pageName ? pageName : 'About';
+		var path = window.location.pathname.slice(1);
+		path = path == '' ? 'about/' : path;
+		path = path.slice(0, path.length - 1);
 
 		this.component.innerHTML = `
 			<div class="logo">
@@ -19,7 +19,7 @@ class TopNavComponent {
 			</div>
 			<wrapper>
 				<span id="title">
-					${this.capitalize(page)}
+					${this.capitalize(path)}
 				</span>
 				${typeof userValid != 'undefined' ? `
 				<div id="subtitle">

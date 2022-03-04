@@ -16,8 +16,7 @@
 })();
 
 function runLogin() {
-    console.log('hi')
-    window.location.href = `/login?from=${window.location.pathname}`;
+    window.location.href = `/login`;
     return;
 }
 
