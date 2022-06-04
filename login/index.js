@@ -35,6 +35,9 @@
 				case 'ratelimited':
 					error = 'Our proxy server has been ratelimited by bonk.io. Please try again in a bit.';
 				break;
+				case 'banned':
+					error = 'That account is banned.';
+				break;
 				default:
 					error = e;
 				break;
