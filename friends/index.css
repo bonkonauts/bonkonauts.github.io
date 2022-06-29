@@ -69,7 +69,7 @@ card item ul {
 card item ul li {
 	padding: 0.5rem;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(4, 1fr);
 	color: rgba(var(--font-color), 0.9);
 	font-size: 0.9rem;
 	transition: background-color 0.4s, transform 0.25s;
