@@ -25,7 +25,7 @@ function init() {
 	// dbid
 	tmpIDC = document.createElement('item');
 	tmpIDC.style.color = "rgba(var(--font-color), 0.9)";
-	    tmpIDC.innerHTML = "<strong> Your ID: </strong>" + window.user.id.toLocaleString();
+	    tmpIDC.innerHTML = "<strong> Your ID: </strong>" + window.user.id.toLocaleString() + " <strong style='margin-left: 2rem;'> Approx. Creation: </strong> " + getRawDate(window.user.id);
 	    tmpIDC.id = "idc";
 	friendsContainer.appendChild(tmpIDC);
 
