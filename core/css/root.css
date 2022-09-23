@@ -280,3 +280,8 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+item strong {
+	color: rgba(var(--primary-color), 0.7);
+	padding-right: 0.25rem;
+}

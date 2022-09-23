@@ -35,10 +35,7 @@ card item {
 	font-size: 1.2rem;
 	color: rgba(var(--font-color), 0.9);
 }
-item strong {
-	color: rgba(var(--primary-color), 0.7);
-	padding-right: 0.25rem;
-}
+
 card input {
 	position:absolute;
 	top: 0.5vw;
