@@ -13,11 +13,6 @@ class TopNavComponent {
 		path = path == '' ? 'about/' : path;
 		path = path.slice(0, path.length - 1);
 
-		if(userValid) {
-			console.log(user)
-		}
-
-
 		this.component.innerHTML = `
 			<div class="logo">
 				${window.siteName}
@@ -29,12 +24,11 @@ class TopNavComponent {
 				${typeof userValid != 'undefined' ? `
 				<div id="subtitle">
 					<li>${userValid}</li>
-				</div>
-				<item style="color: rgba(var(--font-color), 0.9)">
-					<strong> Your ID: </strong> ${window.user.id.toLocaleString()}
-					<strong style="margin-left: 2rem;"> Approx. Creation: </strong> ${window.user.creation}
-				</item>
-				` : ``}
+					<item style="color: rgba(var(--font-color), 0.9)">
+						<strong> Your ID: </strong> ${window.user.id.toLocaleString()}
+						<strong style="margin-left: 2rem;"> Approx. Creation: </strong> ${window.user.creation}
+					</item>
+				</div>` : ``}
 				
 			</wrapper>
 		`;
