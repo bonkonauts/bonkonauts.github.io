@@ -168,7 +168,7 @@ alert.Info {
 	padding: 1.5rem;
 	padding-top: 0.75rem;
 	font-size: 0.85rem;
-	margin-top: -1vh;
+	margin-top: -0.75em;
 	/* padding-left: 1.5rem; */
 }
 .topnav wrapper div#subtitle p {
