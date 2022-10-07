@@ -159,15 +159,15 @@ alert.Info {
 	padding: 1rem;
 }
 .topnav wrapper span#title {
-	padding: 1.5rem;
-	font-size: 1.5rem;
+	padding: 4vh;
+	font-size: 4vh;
 	color: rgba(var(--primary-color), 0.95);
 }
 .topnav wrapper div#subtitle {
 	color: rgba(var(--font-color), 0.95);
-	padding: 1.5rem;
-	padding-top: 0.75rem;
-	font-size: 0.85rem;
+	padding: 4vh;
+	padding-top: 0;
+	font-size: 1.75vh;
 	margin-top: -1vh;
 	/* padding-left: 1.5rem; */
 }
