@@ -15,7 +15,7 @@
 
 	--top-nav-opacity: 0.9;
 	--top-nav-width:  100vw;
-	--top-nav-height:  12vh;
+	--top-nav-height:  6.5em;
 
 	--side-nav-opacity: 0.95;
 	--side-nav-width:  18vw;
@@ -159,15 +159,15 @@ alert.Info {
 	padding: 1rem;
 }
 .topnav wrapper span#title {
-	padding: 4vh;
-	font-size: 4vh;
+	padding: 1.5rem;
+	font-size: 1.5rem;
 	color: rgba(var(--primary-color), 0.95);
 }
 .topnav wrapper div#subtitle {
 	color: rgba(var(--font-color), 0.95);
-	padding: 4vh;
-	padding-top: 0;
-	font-size: 1.75vh;
+	padding: 1.5rem;
+	padding-top: 0.75rem;
+	font-size: 0.85rem;
 	margin-top: -1vh;
 	/* padding-left: 1.5rem; */
 }
