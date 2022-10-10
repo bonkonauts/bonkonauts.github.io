@@ -22,6 +22,19 @@ card {
     align-content: center;
     align-items: center;
 }
+card input.name {
+	width: 100%;
+	text-align: center;
+	font-family: 'VT323', monospace;
+	font-size: 1.5rem;
+	border: none;
+	border-bottom: 1px solid rgba(var(--primary-color), 0.3);
+	padding-bottom: 0.1em;
+	margin-bottom: 0.5em;
+	background-color: transparent;
+	color: rgba(var(--font-color), 0.75);
+	outline: none;
+}
 card avatar {
     display: block;
     width: 11vw;
@@ -41,6 +54,40 @@ card avatar:hover {
 card avatar:hover~.preview {
 	filter: opacity(100%);
 }
+card span.link {
+	display: flex;
+    position: absolute;
+    right: 0.25em;
+    bottom: 0.25em;
+    border: 1px outset rgba(var(--primary-color), 0.8);
+    border-radius: 40%;
+    padding: 0.25em;
+    color: white;
+	cursor: pointer;
+	transition: all 0.3s ease-out;
+}
+card span.link:hover {
+	scale: 1.1;
+}
+card div.popup {
+	display: flex;
+	position: absolute;
+	bottom: -2.7em;
+	background-color: rgba(var(--success-color), 0.9);
+	color: #333;
+	font-weight: bold;
+	border: 1px solid rgba(var(--success-color), 0.25);
+	border-radius: 7px;
+	padding: 0.15em;
+	animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+	0% { opacity: 0; }
+	100% { opacity: 1; }
+}
+
+
 
 .preview {
 	position: absolute;
@@ -114,7 +161,7 @@ card active::before {
 }
 card active {
     position: absolute;
-    bottom: -4vh;
+    bottom: -3.5em;
     text-align: center;
     background-color: rgba(var(--frontground-color), 0.9);
     border: 1px solid rgba(var(--primary-color), 0.7);
