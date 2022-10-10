@@ -213,7 +213,7 @@ function createPreviewURL(avatar) {
 }
 
 function createShareURL(slotName, username, avatar) {
-	return `https://bonkleagues.io/skins.html#${encodeURIComponent(`${slotName.toString()}`)}|${username}|${encodeURIComponent(avatar)}`
+	return `https://bonkleagues.io/skins.html#${encodeURIComponent(`${slotName.toString()}`)}|${username}|${avatar}`
 }
 
 async function createShortURL(shareURL) {
