@@ -27,7 +27,7 @@ async function runReload() {
         AlertEmitter.emit('error', `Could not reload because you are not logged in...`);
         return;   
     }
-    let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
+    let res = await fetch('https://bonkonauts.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
     res = await res.json();
 
     if(res.r != 'success') {
