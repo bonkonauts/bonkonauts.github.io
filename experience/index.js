@@ -10,11 +10,8 @@ function init() {
 
 	var winCount = Math.ceil((maxThisLevel - currThisLevel) / 100);
 
-	var farmMinutes = (userXP / 2000) * 20;
 	var farmMinutesTillNext = ((maxThisLevel - currThisLevel) / 2000) * 20;
-	var farmHours = farmMinutes / 60;
 	var farmHoursTillNext = farmMinutesTillNext / 60;
-	var farmDays = farmMinutes / 1440;
 	var farmDaysTillNext = farmMinutesTillNext / 1440;
 
 	if(userXP < -1)
@@ -46,24 +43,26 @@ function init() {
 	// needed
 	tmpCard = document.createElement('card');
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<strong>Gameplay</strong><li>Win <comment>${winCount.toLocaleString()}</comment>  games</li>`;
-		tmpCard.appendChild(tmpItem);
-		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<strong>XP Boosting</strong><li>Minutes: ~<comment>${farmMinutesTillNext.toFixed(2)}</comment></li><li>Hours: ~<comment>${farmHoursTillNext.toFixed(2)}</comment></li><li>Days: ~<comment>${farmDaysTillNext.toFixed(2)}</comment></li>`;
+			tmpItem.innerHTML = `<strong>Gameplay</strong>
+			<li>Win <comment>${winCount.toLocaleString()}</comment> games!</li>`;
 		tmpCard.appendChild(tmpItem);
 	expContainer.appendChild(tmpCard);
 	
 	// milestones
+	const maxXP = 12000;
+	var grindDays = [(Number(milestones[0].xp) - userXP) / maxXP, (Number(milestones[1].xp) - userXP) / maxXP];
+	grindDays = [Math.ceil(grindDays[0]), Math.ceil(grindDays[1])];
+
 	tmpCard = document.createElement('card');
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<strong>Milestones</strong> <li><b>To level <comment>${milestones[0].level}</comment></b>:`;
+			tmpItem.innerHTML = `<strong>Milestones</strong><li><b>To level <comment>${milestones[0].level}</comment></b>: Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays[0].toLocaleString()}</comment> day${grindDays[0] == 0 || grindDays[0] > 1 ? 's' : ''}!</li>`;
 		tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
 			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[0].xp}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[0].percent}%"><perc>${milestones[0].percent}%</perc></div></div>`;
 		tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<li><b>To level <comment>${milestones[1].level}</comment></b>:`;
-		tmpCard.appendChild(tmpItem);
+			tmpItem.innerHTML = `<li><b>To level <comment>${milestones[1].level}</comment></b>: Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays[1].toLocaleString()}</comment> day${grindDays[1] == 0 || grindDays[0] > 1 ? 's' : ''}!</li>`;
+			tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
 			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[1].xp}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[1].percent}%"><perc>${milestones[1].percent}%</perc></div></div>`;
 		tmpCard.appendChild(tmpItem);
@@ -82,10 +81,14 @@ function findMilestones(xp) {
 			var level = lvl + count;
 			var mileXP  = Math.pow(level-1, 2)*100;
 			var percent = (xp / mileXP) * 100;
-			found.push({level: level, xp: mileXP.toLocaleString(), percent: percent.toFixed(2)});
+			found.push({level: level, xp: mileXP, percent: percent.toFixed(2)});
 		}
 		count++;
 	}
 
 	return found;
+}
+
+function levelToXP(level) {
+    return Math.pow(--level * 10, 2);
 }

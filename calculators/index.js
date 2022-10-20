@@ -109,16 +109,22 @@ function updateGoal(inputType, rawVal, isStart) {
 
     let winCount = Math.ceil((goalXP - startXP) / 100);
 
-    var farmMinutes = (startXP / 2000) * 20;
-	var farmMinutesTillNext = ((goalXP - startXP) / 2000) * 20;
-	var farmHours = farmMinutes / 60;
-	var farmHoursTillNext = farmMinutesTillNext / 60;
-	var farmDays = farmMinutes / 1440;
-	var farmDaysTillNext = farmMinutesTillNext / 1440;
-
+	const maxXP = 12000;
+	var grindDays = (goalXP - startXP) / maxXP;
+	var includeYears = grindDays > 365;
+	var grindYears = includeYears ? grindDays / 365 : 0;
+	grindYears = ` or <comment>${grindYears.toFixed(2).toLocaleString()}</comment> year${grindYears > 1 ? 's' : ''}`; 
+	grindDays = Math.ceil(grindDays);
 
     var progress = ((startXP / goalXP) * 100).toFixed(2);
-    output.innerHTML = `<hr/><br/><div class="progress-stats">${startXP.toLocaleString()} / ${goalXP.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${progress}%"><perc>${progress}%</perc></div></div><item><strong>Gameplay</strong><li>Win <comment>${winCount.toLocaleString()}</comment> games!</li></item><item><strong>XP Boosting</strong><li>Minutes: ~<comment>${farmMinutesTillNext.toFixed(2)}</comment></li><li>Hours: ~<comment>${farmHoursTillNext.toFixed(2)}</comment></li><li>Days: ~<comment>${farmDaysTillNext.toFixed(2)}</comment></li></item><br/>`
+    output.innerHTML = `<hr/><br/>
+	<div class="progress-stats">${startXP.toLocaleString()} / ${goalXP.toLocaleString()}</div>
+	<div class="progress-wrapper"><div class="progress" style="width: ${progress}%"><perc>${progress}%</perc></div></div>
+	<item><strong>What will it take?</strong>
+		<li>Win <comment>${winCount.toLocaleString()}</comment> games!</li>
+		<li>Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays.toLocaleString()}</comment> day${grindDays == 0 || grindDays > 1 ? 's' : ''}${includeYears ? grindYears : ''}!</li>
+	</item>
+	<br/>`
 }
 
 // input filter
