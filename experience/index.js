@@ -1,6 +1,6 @@
 function init() {
 	var userXP = Number(window.user.xp);
-	var level = Math.floor(Math.sqrt(userXP) / 10) + 1;
+	var level = xpToLevel(userXP);
 	var nextLevel = Math.pow(level * 10, 2);
 	var lastLevel = Math.pow((level - 1) * 10, 2);
 	
@@ -58,20 +58,20 @@ function init() {
 			tmpItem.innerHTML = `<strong>Milestones</strong><li><b>To level <comment>${milestones[0].level}</comment></b>: Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays[0].toLocaleString()}</comment> day${grindDays[0] == 0 || grindDays[0] > 1 ? 's' : ''}!</li>`;
 		tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[0].xp}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[0].percent}%"><perc>${milestones[0].percent}%</perc></div></div>`;
+			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[0].xp.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[0].percent}%"><perc>${milestones[0].percent}%</perc></div></div>`;
 		tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
 			tmpItem.innerHTML = `<li><b>To level <comment>${milestones[1].level}</comment></b>: Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays[1].toLocaleString()}</comment> day${grindDays[1] == 0 || grindDays[0] > 1 ? 's' : ''}!</li>`;
 			tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[1].xp}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[1].percent}%"><perc>${milestones[1].percent}%</perc></div></div>`;
+			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[1].xp.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[1].percent}%"><perc>${milestones[1].percent}%</perc></div></div>`;
 		tmpCard.appendChild(tmpItem);
 	expContainer.appendChild(tmpCard);
 
 }
 
 function findMilestones(xp) {
-	var lvl = Math.floor(Math.sqrt(xp) / 10);
+	var lvl = xpToLevel(xp);
 	var mod = lvl < 50 ? 10 : lvl < 100 ? 25 : 50;
 	let found = [];
 	let count = 1;
@@ -79,7 +79,7 @@ function findMilestones(xp) {
 	while(found.length < 2) {
 		if((lvl + count) % mod == 0) {
 			var level = lvl + count;
-			var mileXP  = Math.pow(level-1, 2)*100;
+			var mileXP  = levelToXP(level);
 			var percent = (xp / mileXP) * 100;
 			found.push({level: level, xp: mileXP, percent: percent.toFixed(2)});
 		}
@@ -91,4 +91,7 @@ function findMilestones(xp) {
 
 function levelToXP(level) {
     return Math.pow(--level * 10, 2);
+}
+function xpToLevel(xp) {
+    return Math.floor(Math.sqrt(xp) / 10) + 1;
 }
