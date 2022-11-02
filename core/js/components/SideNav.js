@@ -21,6 +21,7 @@ class SideNavComponent {
 		this.addTab({currentPath: path, icon: 'fas fa-table', text: 'Maps', usesSubTabs: true});
 		this.addSubTab(this.tabs["Maps"], {currentPath: path, icon: 'fas fa-map-marked-alt', text: 'Your Maps', pathOverride: '/yourmaps'}, true);
 		// this.addSubTab(this.tabs["Maps"], {currentPath: path, icon: 'fas fa-fire', text: "Hot Maps", pathOverride: '/hotmaps'});
+		this.addTab({currentPath: path, icon: 'fas fa-gamepad', text: 'Lobbies'});
 		// this.addTab({currentPath: path, icon: 'fas fa-trophy', text: 'Leaderboard'});
 		this.addTab({currentPath: path, icon: 'fas fa-sync-alt', text: 'Reload', additionalClass: 'rotate', onClick: runReload});
 		this.addTab({currentPath: path, icon: `fas fa-sign-${typeof userValid != 'undefined' ? 'out' : 'in'}`, text: typeof userValid != 'undefined' ? 'Logout' : "Login", onClick: runLogin});

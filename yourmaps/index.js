@@ -1,5 +1,5 @@
 var prevElem;
-function showStats(e, elem) {
+function showMap(e, elem) {
 // 	if(elem == prevElem) return;
     
 //     var stats = document.querySelector('stats');
@@ -13,7 +13,7 @@ function showStats(e, elem) {
 //     prevElem = elem;
 }
 
-function hideStats() {
+function hideMap() {
 // 	document.querySelector('stats').style.display = "none";
 //     prevElem = null;
 }
@@ -25,7 +25,10 @@ async function init() {
 	await proxyMaps();
 	var mapListStr = "";
 	for(let map of MAPS) {
-		mapListStr += `<li class="user" onmouseover="showStats(event, this)" onmouseout="hideStats(this)"><span id="name">${decodeURIComponent(map.name)}</span><span id="dbid">${map.id.toLocaleString()}</span><span id="U/D">${map.published == 1 ? (map.vu == 0 && map.vd == 0 ? '<span class="down">No Votes</span>' : `<span class="up">${map.vu}</span> / <span class="down">${map.vd}</span>`): '<span class="down">PRIVATE</span>'}</span><span id="created">${map.creationdate.split(' ')[0]}</span></li>`;
+		// previewMap(map.id, map.leveldata).then((id, img) => {
+		// 	console.log(id, img);
+		// })
+		mapListStr += `<li class="user" id="${map.id}"${/*' onmouseover="showMap(map, this)" onmouseout="hideMap(this)"'*/''}><span id="name">${decodeURIComponent(map.name)}</span><span id="dbid">${map.id.toLocaleString()}</span><span id="U/D">${map.published == 1 ? (map.vu == 0 && map.vd == 0 ? '<span class="down">No Votes</span>' : `<span class="up">${map.vu}</span> / <span class="down">${map.vd}</span>`): '<span class="down">PRIVATE</span>'}</span><span id="created">${map.creationdate.split(' ')[0]}</span></li>`;
 	}
 
 	window.FLASH_MAPS = "";
@@ -67,6 +70,28 @@ async function init() {
 		tmpCard.appendChild(tmpItem);
 	mapContainer.appendChild(tmpCard);
 }
+
+// function addMapPreview(id, img) {
+
+// }
+
+// function previewMap(id, rawMap) {
+// 	return new Promise(async (resolve, reject) => {
+// 		console.log(1);
+// 		let res = await fetch(`http://bonkonauts.herokuapp.com/preview?map=test`);
+// 		console.log(2);
+// 		let data = await res.text();
+// 		console.log(3);
+
+// 		if(!data.includes('data:image/png')) {
+// 			console.log('e');
+// 			reject(-1, '');
+// 		}
+	
+// 		console.log('s');
+// 		resolve(id, data);
+// 	});
+// }
 
 async function proxyFlashMaps(startingFrom=0) {
 	let res = await fetch('https://bonkonauts.herokuapp.com/https://www.bonk2.io/scripts/map_b1_getown.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `token=${window.user.token}&startingfrom=${startingFrom}`});
