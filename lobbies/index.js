@@ -11,7 +11,7 @@ async function init() {
 		let { gameType, gameMode } = getGameMode(room.mode_ga, room.mode_mo);
 		let password = room.password == 1 ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>'
 
-		lobbyListStr += `<li class="lobby"><item id="name" style='align-self: left'>${name}</item><item id="ID">${room.id.toLocaleString()}</item><item id="players">${players}</item><item id="pass">${password}</item><item id="country">${country}</item></li>`;
+		lobbyListStr += `<li class="lobby"><item id="name" style='align-self: left'>${name}</item><item id="ID">${room.id.toLocaleString()}</item><item id="players">${players}</item><item id="pass">${password}</item><item id="mode">${gameMode}</item><item id="country">${country}</item></li>`;
 	}
 
 	var container = document.querySelector('section.content');
@@ -27,7 +27,7 @@ async function init() {
 		tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
 			tmpItem.id = "";
-			tmpItem.innerHTML = Rooms.length != 0 ? `<ul><b><li><item id="name">Name</item><item id="ID">ID</item><item id="players">Players</item><item id="pass">Password</item><item id="country">Country</item></li></b><hr/>${lobbyListStr}</ul>` : "There are no maps to display...";
+			tmpItem.innerHTML = Rooms.length != 0 ? `<ul><b><li><item id="name">Name</item><item id="ID">ID</item><item id="players">Players</item><item id="pass">Password</item><item id="mode">Mode</item><item id="country">Country</item></li></b><hr/>${lobbyListStr}</ul>` : "There are no maps to display...";
 		tmpCard.appendChild(tmpItem);
 	container.appendChild(tmpCard);
 }

@@ -7,7 +7,7 @@
 
 card {
 	position: relative;
-	width: 60vw;
+	width: 95%;
 	height: 84vh;
 	background-color: rgba(var(--frontground-color), 0.9);
 	border: 1px solid rgba(var(--primary-color), 0.7);
@@ -75,7 +75,7 @@ img.country {
 card item ul li {
 	padding: 0.5rem;
 	display: grid;
-	grid-template-columns: repeat(5, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	color: rgba(var(--font-color), 0.9);
 	font-size: 0.9rem;
 	transition: background-color 0.4s, transform 0.25s;
