@@ -70,7 +70,3 @@ async function fetchLobbies(startingFrom=0) {
 
 	return data;
 }
-
-function getQuery(qString, query) {
-	return qString.split(`&${query}=`)[1].split('&')[0];
-}
