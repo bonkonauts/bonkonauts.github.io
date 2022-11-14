@@ -19,7 +19,7 @@ class TopNavComponent {
 			</div>
 			<wrapper>
 				<span id="title">
-					${this.capitalize(path)}
+					${this.capitalize(window.pathTitle)}
 				</span>
 				${typeof userValid != 'undefined' ? `
 				<div id="subtitle">

@@ -19,6 +19,7 @@ function hideMap() {
 }
 
 async function init() {
+	window.pathTitle = 'Your Maps';
 	window.MAPS = [];
     
 

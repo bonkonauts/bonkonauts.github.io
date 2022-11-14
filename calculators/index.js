@@ -1,4 +1,5 @@
 function init() {
+	window.pathTitle = 'Calculators';
 	var calcContainer = document.querySelector('section.content')
 	var tmpCard, tmpItem;
 

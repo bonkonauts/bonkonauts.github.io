@@ -17,7 +17,9 @@ class SideNavComponent {
 		this.addTab({currentPath: path, icon: 'fas fa-calculator', text: 'Calculators'});
 		this.addTab({currentPath: path, icon: 'fas fa-star', text: 'Experience'});
 		this.addTab({currentPath: path, icon: 'fas fa-user-circle', text: 'Avatars'});
-		this.addTab({currentPath: path, icon: 'fas fa-users', text: 'Friends'});
+		this.addTab({currentPath: path, icon: 'fas fa-users', text: 'Friends', usesSubTabs: true});
+		this.addSubTab(this.tabs["Friends"], {currentPath: path, icon: 'fas fa-user', text: 'List', pathOverride: '/friendlist'}, true);
+		this.addSubTab(this.tabs["Friends"], {currentPath: path, icon: 'fas fa-bell', text: 'Requests', pathOverride: '/friendreqs'});
 		this.addTab({currentPath: path, icon: 'fas fa-table', text: 'Maps', usesSubTabs: true});
 		this.addSubTab(this.tabs["Maps"], {currentPath: path, icon: 'fas fa-map-marked-alt', text: 'Your Maps', pathOverride: '/yourmaps'}, true);
 		// this.addSubTab(this.tabs["Maps"], {currentPath: path, icon: 'fas fa-fire', text: "Hot Maps", pathOverride: '/hotmaps'});
@@ -28,9 +30,11 @@ class SideNavComponent {
 	
 		this.component.onclick = (e) => {
 			if(e.target.className != "sidenav") {
-				window.lastClickTarget = e.target;
-				var subTabs = e.target.querySelector('subtabs');
-				subTabs.classList.contains('hidden') ? this.openSubtabs(e.target) : this.closeSubTabs(e.target);
+				let target = e.target;
+				if(target.tagName == "SPAN") target = e.target.parentElement;
+				window.lastClickTarget = target;
+				var subTabs = target.querySelector('subtabs');
+				subTabs.classList.contains('hidden') ? this.openSubtabs(target) : this.closeSubTabs(target);
 			}
 			else this.closeAllSubTabs();
 		}

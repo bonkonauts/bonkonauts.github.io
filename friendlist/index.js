@@ -1,4 +1,5 @@
 function init() {
+	window.pathTitle = 'Friend List';
 	var FRIENDS = window.user.friends;
 	var LEGACY_FRIENDS = window.user.legacyFriends.split('#');
 
@@ -9,7 +10,7 @@ function init() {
 
 	var friendListStr = "";
 	for(let friend of FRIENDS) {
-		friendListStr += `<li class="user"><span id="name">${friend.name.substring(0, 15)}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span><span id="creation">${getRawDate(friend.id)}</span></li>`;
+		friendListStr += `<li class="user"><span id="name">${friend.name.substring(0, 15)}${friend.name.length > 15 ? '...' : ''}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="creation">${getRawDate(friend.id)}</span></li>`;
 	}
 	var legacyFriendListStr = "";
 	var legacyFriendCount = 0;
@@ -38,7 +39,7 @@ function init() {
 		}
 		tmpItem = document.createElement('item');
 			tmpItem.id = "friends";
-			tmpItem.innerHTML = FRIENDS.length != 0 ? `<ul><b><li><span id="name">Username</span><span id="dbid">DBID</span><span id="status">Status</span><span id="creation">~Creation</span></li></b><hr/>${friendListStr}</ul>` : "There are no friends to display...";
+			tmpItem.innerHTML = FRIENDS.length != 0 ? `<ul><b><li><span id="name">Username</span><span id="status">Status</span><span id="dbid">DBID</span><span id="creation">~ Account Age</span></li></b><hr/>${friendListStr}</ul>` : "There are no friends to display...";
 		tmpCard.appendChild(tmpItem);
 	friendsContainer.appendChild(tmpCard);
 
@@ -76,7 +77,7 @@ function updateFriendList(input, friends, legacy_friends) {
 	if(input.name == "friends") {
 		for(let friend of friends) {
 			if(friend.name.toLowerCase().indexOf(searchQuery.toLowerCase()) >= 0) {
-				friendList += `<li class="user"><span id="name">${friend.name.substring(0, 15)}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span></li>`;
+				friendList += `<li class="user"><span id="name">${friend.name.substring(0, 15)}${friend.name.length > 15 ? '...' : ''}</span><span id="dbid">${friend.id.toLocaleString()}</span><span id="status" class="${friend.roomid ? "online" : "offline"}">${friend.roomid ? "Online" : "Offline"}</span></li>`;
 				friendCount++;
 			}
 		}

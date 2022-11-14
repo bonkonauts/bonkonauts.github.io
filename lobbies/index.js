@@ -1,4 +1,5 @@
 async function init() {
+	window.pathTitle = 'Lobbies';
 	const Lobbies = await fetchLobbies();
 	var Rooms = Lobbies.rooms;
 

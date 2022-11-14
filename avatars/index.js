@@ -1,4 +1,5 @@
 function init() {	
+	window.pathTitle = 'Avatars';
 	window.AVATARS = [window.user.avatar1, window.user.avatar2, window.user.avatar3, window.user.avatar4, window.user.avatar5];
 	const ACTIVE_AVATAR = window.user.activeAvatarNumber;
 	window.Skindex = getSkindex();

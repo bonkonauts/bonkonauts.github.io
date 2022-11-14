@@ -1,10 +1,12 @@
 (function() {
     window.siteName = "bonkonauts";
+	window.pathTitle = 'About';
 
     window.AlertEmitter = new AlertEmitterComponent();
     
     var animation = new AnimationComponent();
     animation.start();
+    init();
 
     var sideNav = new SideNavComponent();
     sideNav.prependTo(document.querySelector('main'));
@@ -12,7 +14,6 @@
     var topNav = new TopNavComponent();
     topNav.prependTo(document.querySelector('header'));
 
-    init();
 })();
 
 function runLogin() {

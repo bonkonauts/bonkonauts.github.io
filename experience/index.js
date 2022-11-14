@@ -1,4 +1,5 @@
 function init() {
+	window.pathTitle = 'Experience';
 	var userXP = Number(window.user.xp);
 	var level = xpToLevel(userXP);
 	var nextLevel = Math.pow(level * 10, 2);

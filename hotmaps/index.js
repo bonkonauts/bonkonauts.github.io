@@ -19,6 +19,7 @@ function hideStats() {
 }
 
 async function init() {
+	window.pathTitle = 'Hot Maps';
 	window.MAPS = [];
     
 
