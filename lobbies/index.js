@@ -60,13 +60,20 @@ function getGameMode(game, mode) {
 }
 
 async function fetchLobbies(startingFrom=0) {
-	const VERSION = 44;
-	let res = await fetch('https://bonkonauts.herokuapp.com/https://bonk2.io/scripts/getrooms.php', { 
+	const VERSION = 45;
+	let res = await fetch('https://cors-anywhere.herokuapp.com/https://bonk2.io/scripts/getrooms.php', { 
 		method: 'POST',
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'
 	}, body: `version=${VERSION}&gl=y&token=`});
 
     let data = await res.text();
+
+	if(data.includes('See /corsdemo for more info')) {
+		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
+		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
+		return null;
+	}
+
 	data = JSON.parse(data);
 
 	return data;

@@ -37,7 +37,7 @@ async function init() {
 
 async function fetchRequests() {
 	if(typeof window.user.token != 'string') return null;
-	let res = await fetch('https://bonkonauts.herokuapp.com/https://bonk2.io/scripts/friends.php', { 
+	let res = await fetch('https://cors-anywhere.herokuapp.com/https://bonk2.io/scripts/friends.php', { 
 		method: 'POST',
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'
 	}, body: `task=getfriends&token=${window.user.token}`});
@@ -54,7 +54,7 @@ async function addFriend(elem) {
 	let friendID = elem.id;
 	let friend = getFriendByID(friendID);
 
-	let res = await fetch('https://bonkonauts.herokuapp.com/https://bonk2.io/scripts/friends.php', { 
+	let res = await fetch('https://cors-anywhere.herokuapp.com/https://bonk2.io/scripts/friends.php', { 
 		method: 'POST',
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'
 	}, body: `task=accept&theirid=${friend.id}&token=${window.user.token}`});
@@ -78,7 +78,7 @@ async function deleteFriend(elem) {
 	let shouldDelete = confirm(`Are you sure you want to delete '${friend.name}' as a friend?`);
 	if(!shouldDelete) return;
 
-	let res = await fetch('https://bonkonauts.herokuapp.com/https://bonk2.io/scripts/friends.php', { 
+	let res = await fetch('https://cors-anywhere.herokuapp.com/https://bonk2.io/scripts/friends.php', { 
 		method: 'POST',
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'
 	}, body: `task=deleterequest&theirid=${friend.id}&token=${window.user.token}`});

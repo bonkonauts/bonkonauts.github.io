@@ -95,8 +95,14 @@ async function init() {
 // }
 
 async function proxyFlashMaps(startingFrom=0) {
-	let res = await fetch('https://bonkonauts.herokuapp.com/https://www.bonk2.io/scripts/map_b1_getown.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `token=${window.user.token}&startingfrom=${startingFrom}`});
+	let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/map_b1_getown.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `token=${window.user.token}&startingfrom=${startingFrom}`});
     let data = await res.text();
+
+	if(data.includes('See /corsdemo for more info')) {
+		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
+		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
+		return null;
+	}
 
 	if(data.includes('The origin "https://bonkonauts.github.io" has sent too many requests')) {
 		AlertEmitter.emit('error', 'CORS issue, try again later.');
@@ -108,11 +114,11 @@ async function proxyFlashMaps(startingFrom=0) {
 }
 
 async function proxyMaps(startingFrom=0) {
-	let res = await fetch('https://bonkonauts.herokuapp.com/https://www.bonk2.io/scripts/map_getown.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `token=${window.user.token}&startingfrom=${startingFrom}`});
+	let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/map_getown.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `token=${window.user.token}&startingfrom=${startingFrom}`});
     let data = await res.text();
 
 	if(data.includes('See /corsdemo for more info')) {
-		AlertEmitter.emit('error', 'First go <a href="https://bonkonauts.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
+		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporay access"')
 		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
 		return null;
 	}
