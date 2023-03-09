@@ -62,7 +62,7 @@ function init() {
 			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[0].xp.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[0].percent}%"><perc>${milestones[0].percent}%</perc></div></div>`;
 		tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
-			tmpItem.innerHTML = `<li><b>To level <comment>${milestones[1].level}</comment></b>: Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays[1].toLocaleString()}</comment> day${grindDays[1] == 0 || grindDays[0] > 1 ? 's' : ''}!</li>`;
+			tmpItem.innerHTML = `<li><b>To level <comment>${milestones[1].level}</comment></b>: Get max XP (${maxXP.toLocaleString()}) every day for <comment>${grindDays[1].toLocaleString()}</comment> day${grindDays[1] == 0 || grindDays[1] > 1 ? 's' : ''}!</li>`;
 			tmpCard.appendChild(tmpItem);
 		tmpItem = document.createElement('item');
 			tmpItem.innerHTML = `<div class="progress-stats">${userXP.toLocaleString()} / ${milestones[1].xp.toLocaleString()}</div><div class="progress-wrapper"><div class="progress" style="width: ${milestones[1].percent}%"><perc>${milestones[1].percent}%</perc></div></div>`;
