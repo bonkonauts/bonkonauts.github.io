@@ -102,7 +102,7 @@ function updateGoal(inputType, rawVal, isStart) {
 
     let winCount = Math.ceil((goalXP - startXP) / 100);
 
-	const maxXP = 12000;
+	const maxXP = 18000; // Updated from 12,000XP -> 18,000XP : 05/10/2023
 	var grindDays = (goalXP - startXP) / maxXP;
 	var includeYears = grindDays > 365;
 	var grindYears = includeYears ? grindDays / 365 : 0;

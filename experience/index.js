@@ -50,7 +50,7 @@ function init() {
 	expContainer.appendChild(tmpCard);
 	
 	// milestones
-	const maxXP = 12000;
+	const maxXP = 18000; // Updated from 12,000XP -> 18,000XP : 05/10/2023
 	var grindDays = [(Number(milestones[0].xp) - userXP) / maxXP, (Number(milestones[1].xp) - userXP) / maxXP];
 	grindDays = [Math.ceil(grindDays[0]), Math.ceil(grindDays[1])];
 
