@@ -1,7 +1,6 @@
 async function init() {
 	window.pathTitle = 'Lobbies';
 	const Lobbies = await fetchLobbies();
-	var Rooms = Lobbies.rooms;
 
 	var container = document.querySelector('section.content');
 
@@ -12,11 +11,11 @@ async function init() {
 	tmpCard = document.createElement('card');
 		tmpItem = document.createElement('item');
 			tmpItem.id = "lobbies_title";
-			tmpItem.innerHTML = `<strong>Lobbies</strong> (${Rooms.length})`;
+			tmpItem.innerHTML = `<strong>Lobbies</strong> (${Lobbies.rooms.length})`;
 		tmpCard.appendChild(tmpItem);
 		tmpSearch = document.createElement('input');
 				tmpSearch.addEventListener('input', (ev) => { 
-					searchRoomList(ev.target.value, Rooms);
+					buildRoomList(ev.target.value, Lobbies);
 				});
 				tmpSearch.setAttribute('placeholder', "Roomname...");
 				tmpSearch.name = "rooms";
@@ -26,18 +25,19 @@ async function init() {
 		tmpCard.appendChild(tmpItem);
 	container.appendChild(tmpCard);
 
-
-	searchRoomList('', Rooms);
+	buildRoomList('', Lobbies);
 }
 
 function searchRoomNames(nameKey, rooms) {
 	return rooms.filter(room => room.roomname.toLowerCase().includes(nameKey.toLowerCase()));
 }
 
-function searchRoomList(search, rooms) {
+function buildRoomList(query, lobbies) {
 	var roomListTitle = document.querySelector('item#lobbies_title');
 	var roomList = document.querySelector('item#roomList');
-	var results = searchRoomNames(search, rooms);
+	var results = searchRoomNames(query, lobbies.rooms);
+
+	console.log(lobbies)
 
 	var lobbyListStr = "";
 	for(let i = 0; i < results.length; i++) {
@@ -46,18 +46,19 @@ function searchRoomList(search, rooms) {
 		let country = `<img class="country" src='${getCountryFlag(room.country)}'></img>`
 		let players = `${room.players}/${room.maxplayers}`;
 		let { gameType, gameMode } = getGameMode(room.mode_ga, room.mode_mo);
-		let password = room.password == 1 ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>'
+		let hasPass  = room.password == 1;
+		let password = hasPass ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>'
 
-		lobbyListStr += `<li class="lobby"><item id="name" style='align-self: left'>${name}</item><item id="ID">${room.id.toLocaleString()}</item><item id="players">${players}</item><item id="pass">${password}</item><item id="mode">${gameMode}</item><item id="country">${country}</item></li>`;
+		lobbyListStr += `<li class="lobby"><item id="name" style='align-self: left'>${name}</item><item id="ID">${room.id.toLocaleString()}</item><item id="players">${players}</item><item id="pass"${hasPass ? ` style="color: rgb(184, 59, 59)"` : ``}>${password}</item><item id="mode">${gameMode}</item><item id="country">${country}</item></li>`;
 	}
 
 	roomListTitle.innerHTML = `<strong>Lobbies</strong> (${results.length})`;
-	roomList.innerHTML = results.length != 0 ? `<ul><b><li><item id="name">Name</item><item id="ID">ID</item><item id="players">Players</item><item id="pass">Password</item><item id="mode">Mode</item><item id="country">Country</item></li></b><hr/>${lobbyListStr}</ul>` : `There are no rooms containing the phrase '${search}'...`;
+	roomList.innerHTML = results.length != 0 ? `<ul><b><li><item id="name">Name</item><item id="ID">ID</item><item id="players">Players</item><item id="pass">Password</item><item id="mode">Mode</item><item id="country">Country</item></li></b><hr/>${lobbyListStr}</ul>` : (query.length > 0 ? `There are no rooms containing the phrase '${query}'...` : `There are no rooms...`);
 }
 
 
 async function fetchLobbies(startingFrom=0) {
-	const VERSION = 46;
+	const VERSION = 48;
 	let res = await fetch('https://cors-anywhere.herokuapp.com/https://bonk2.io/scripts/getrooms.php', { 
 		method: 'POST',
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'
