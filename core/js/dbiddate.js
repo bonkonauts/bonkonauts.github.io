@@ -13,7 +13,7 @@ function getRawDate(id) {
 
     let prev, next;
 	for(let i = 1; i < dbids.length; i++) {
-		if(dbids[i] == id) return dbidDates[dbids[i]];
+		if(dbids[i] == id) return beautDate(dbidDates[dbids[i]]);
 		if(dbids[i] > id) {
 			prev = dbids[i - 1];
 			next = dbids[i];
