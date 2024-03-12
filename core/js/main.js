@@ -30,13 +30,21 @@ async function runReload() {
         return;   
     }
     let res = await fetch('https://cors-anywhere.herokuapp.com/https://www.bonk2.io/scripts/login_legacy.php', { method: 'POST', headers: {'Content-Type': 'application/x-www-form-urlencoded'}, body: `username=${user}&password=${pass}&remember=false`});
-    res = await res.json();
+    res = await res.text();
 
-    if(data.includes('See /corsdemo for more info')) {
+    if(res.includes('See /corsdemo for more info')) {
 		AlertEmitter.emit('error', 'First go <a href="https://cors-anywhere.herokuapp.com/corsdemo">here</a> and click "Request temporary access"')
 		AlertEmitter.emit('warning', 'This is due to CORS on https://bonk.io/')
 		return null;
 	}
+
+    try {
+        res = JSON.parse(res);
+    }
+    catch(e) {
+        AlertEmitter.emit('error', 'Failed to parse login response from server...');
+        return;
+    }
 
     if(res.r != 'success') {
         AlertEmitter.emit('error', parseLoginErr(res.e));
