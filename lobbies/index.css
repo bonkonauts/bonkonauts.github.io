@@ -84,9 +84,15 @@ card item ul li:not(:first-child):hover {
 	background-color: rgba(var(--primary-color), 0.2) !important;
 	transform: translate(10px, 0px);
 }
+
 card item ul li.lobby:nth-child(odd) {
 	background-color:rgba(255, 255, 255, .1)
 }
+card item ul li.friend > item:first-child {
+	color: rgba(var(--primary-color), 0.8) !important;
+	font-size: 0.95rem;
+}
+
 card item ul li::marker {
 	color: rgba(var(--font-color), 0.9);
 	font-size: 0.9rem;

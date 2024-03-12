@@ -32,14 +32,27 @@ function searchRoomNames(nameKey, rooms) {
 	return rooms.filter(room => room.roomname.toLowerCase().includes(nameKey.toLowerCase()));
 }
 
+function getFriendRooms() {
+	return window.user.friends.filter(friend => friend.roomid != null).map(friend => friend.roomid);
+}
+
 function buildRoomList(query, lobbies) {
 	var roomListTitle = document.querySelector('item#lobbies_title');
 	var roomList = document.querySelector('item#roomList');
 	var results = searchRoomNames(query, lobbies.rooms);
-
-	console.log(lobbies)
-
+	var friends = getFriendRooms();
 	var lobbyListStr = "";
+
+	for(let i = 0; i < friends.length; i++) {
+		let id = friends[i];
+		// check results for friends, if found, move to top of list
+		let index = results.findIndex(room => room.id == id);
+		if(index != -1) {
+			lobbyListStr += `<li class="lobby friend"><item id="name" style='align-self: left'>${results[index].roomname}</item><item id="ID">${results[index].id.toLocaleString()}</item><item id="players">${results[index].players}/${results[index].maxplayers}</item><item id="pass">${results[index].password == 1 ? '<i class="fas fa-lock"></i>' : '<i class="fas fa-lock-open"></i>'}</item><item id="mode">${getGameMode(results[index].mode_ga, results[index].mode_mo).gameMode}</item><item id="country"><img class="country" src='${getCountryFlag(results[index].country)}'></img></item></li>`;
+			results.splice(index, 1);
+		}
+	}
+
 	for(let i = 0; i < results.length; i++) {
 		let room = results[i];
 		let name = room.roomname;
