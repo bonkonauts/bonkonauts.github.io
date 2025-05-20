@@ -71,7 +71,7 @@ function buildRoomList(query, lobbies) {
 
 
 async function fetchLobbies(startingFrom=0) {
-	const VERSION = 48;
+	const VERSION = 49;
 	let res = await fetch('https://cors-anywhere.herokuapp.com/https://bonk2.io/scripts/getrooms.php', { 
 		method: 'POST',
 		headers: {'Content-Type': 'application/x-www-form-urlencoded'
